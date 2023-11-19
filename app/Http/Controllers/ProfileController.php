@@ -10,7 +10,7 @@ class ProfileController extends Controller
     public function index($id)
     {
         // Declare variables and assign values
-        $name = "Donald Trump";
+        $name = "Donal Trump";
         $age = "75";
 
         // Create data array
@@ -21,19 +21,18 @@ class ProfileController extends Controller
         ];
  
         // Set cookie variables
-        $cookieName = 'access_token';
-        $cookieValue = '123-XYZ';
+        $name = 'access_token';
+        $value = '123-XYZ';
         $minutes = 1;
         $path = '/';
         $domain = $_SERVER['SERVER_NAME'];
         $secure = false;
         $httpOnly = true;
 
-        // Create a response with JSON data and set cookie
-        $response = response()->json($data);
-        $response->withCookie(cookie($cookieName, $cookieValue, time() + 60 * $minutes, $path, $domain, $secure, $httpOnly));
+       // Set the cookie
+       $cookie = cookie($name, $value, $minutes, $path, $domain, $secure, $httpOnly);
 
-        // Return the response
-        return $response;
+       // Add the return statement with the response method along with $data and status-code and set the cookie stated in the question
+       return response()->json($data)->cookie($cookie);
     }
 }
